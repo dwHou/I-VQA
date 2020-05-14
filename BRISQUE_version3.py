@@ -189,4 +189,6 @@ feature = BRISQUE.get_feature(gray_image)
 scaled_feature = BRISQUE._scale_feature(feature)
 
 print(feature)
+# scaled_feature to avoid warning?
+print(scaled_feature)
 
