@@ -105,7 +105,9 @@ class BRISQUE(object):
 
         scale_num = 2
         feat = np.array([])
-
+        
+        # 每次循环得到18个特征
+        
         for itr_scale in range(scale_num):
             mu = cv2.GaussianBlur(
                 imdist, (7, 7), 7 / 6, borderType=cv2.BORDER_CONSTANT)
