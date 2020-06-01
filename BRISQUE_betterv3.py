@@ -96,7 +96,7 @@ class BRISQUE(object):
             gamma_hat = left_std / right_std
         else:
             gamma_hat = np.inf
-        if np.mean((vec) != 0:    
+        if np.mean((vec)**2) != 0:    
             rhat = (np.mean(np.abs(vec))) ** 2 / np.mean((vec) ** 2)
         else:
             rhat = np.inf       
