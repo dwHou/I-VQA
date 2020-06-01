@@ -82,39 +82,24 @@ class BRISQUE(object):
         :type vec: np.ndarray
         """
         
-        
-        left_data = imdata2[imdata < 0]
-        right_data = imdata2[imdata >= 0]
-        left_mean_sqrt = 0
-        right_mean_sqrt = 0
-        if len(left_data) > 0:
-            left_mean_sqrt = np.sqrt(np.average(left_data))
-        if len(right_data) > 0:
-            right_mean_sqrt = np.sqrt(np.average(right_data))
-
-        if right_mean_sqrt != 0:
-            gamma_hat = left_mean_sqrt/right_mean_sqrt
-        else:
-            gamma_hat = np.inf
-        # solve r-hat norm
-
-        imdata2_mean = np.mean(imdata2)
-        if imdata2_mean != 0:
-            r_hat = (np.average(np.abs(imdata))**2) / (np.average(imdata2))
-        else:
-            r_hat = np.inf
-        rhat_norm = r_hat * (((math.pow(gamma_hat, 3) + 1) *
-                              (gamma_hat + 1)) / math.pow(math.pow(gamma_hat, 2) + 1, 2))
-        
-        
         gam = np.arange(0.2, 10 + 0.001, 0.001)
         r_gam = ((gamma(2.0 / gam)) ** 2) / (
                     gamma(1.0 / gam) * gamma(3.0 / gam))
-
-        left_std = np.sqrt(np.mean((vec[vec < 0]) ** 2))
-        right_std = np.sqrt(np.mean((vec[vec > 0]) ** 2))
-        gamma_hat = left_std / right_std
-        rhat = (np.mean(np.abs(vec))) ** 2 / np.mean((vec) ** 2)
+        
+        left_std = 0
+        right_std = 0
+        if len(vec[vec < 0]) > 0:
+            left_std = np.sqrt(np.mean((vec[vec < 0]) ** 2))
+        if len(vec[vec >= 0]) > 0:    
+            right_std = np.sqrt(np.mean((vec[vec >= 0]) ** 2))
+        if right_std != 0:    
+            gamma_hat = left_std / right_std
+        else:
+            gamma_hat = np.inf
+        if np.mean((vec) != 0:    
+            rhat = (np.mean(np.abs(vec))) ** 2 / np.mean((vec) ** 2)
+        else:
+            rhat = np.inf       
         rhat_norm = (rhat * (gamma_hat ** 3 + 1) * (gamma_hat + 1)) / (
                 (gamma_hat ** 2 + 1) ** 2)
 
