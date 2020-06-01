@@ -6,21 +6,6 @@ import sys
 from scipy.special import gamma as tgamma
 import os
 
-# import svm functions (from libsvm library)   
-# if python2.x version : import svm from libsvm (sudo apt-get install python-libsvm)
-if sys.version_info[0] < 3:
-    import svm
-    import svmutil
-    from svmutil import *
-    from svm import *
-else:
-    # if python 3.x version 
-    # make sure the file is in libsvm/python folder
-    import svm
-    import svmutil
-    from svm import *
-    from svmutil import *
-
 # AGGD fit model, takes input as the MSCN Image / Pair-wise Product
 def AGGDfit(structdis):
     # variables to count positive pixels / negative pixels and their squared sum
@@ -146,7 +131,7 @@ def compute_features(img):
 # takes input of the image path
 def test_measure_BRISQUE(imgPath):
     # read image from given path
-    dis = cv2.imread(imgPath, 1)
+    dis = cv2.imread(imgPath)
     if(dis is None):
         print("Wrong image path given")
         print("Exiting...")
@@ -171,28 +156,9 @@ def test_measure_BRISQUE(imgPath):
         max = max_[i] 
         x.append(-1 + (2.0/(max - min) * (features[i] - min)))
     
-    # load model 
-    model = svmutil.svm_load_model("allmodel")
-
-    # create svm node array from python list
-    x, idx = gen_svm_nodearray(x[1:], isKernel=(model.param.kernel_type == PRECOMPUTED))
-    x[36].index = -1 # set last index to -1 to indicate the end.
-	
-	# get important parameters from model
-    svm_type = model.get_svm_type()
-    is_prob_model = model.is_probability_model()
-    nr_class = model.get_nr_class()
-    
-    if svm_type in (ONE_CLASS, EPSILON_SVR, NU_SVC):
-        # here svm_type is EPSILON_SVR as it's regression problem
-        nr_classifier = 1
-    dec_values = (c_double * nr_classifier)()
-    
-    # calculate the quality score of the image using the model and svm_node_array
-    qualityscore = svmutil.libsvm.svm_predict_probability(model, x, dec_values)
-
-    return qualityscore
-
+    return feature		
+    # return x
+'''
 # exit if input argument not given
 if(len(sys.argv) != 2):
     print("Please give input argument of the image path.")
@@ -200,7 +166,9 @@ if(len(sys.argv) != 2):
     print("--------------------------------")
     print("Exiting")
     sys.exit(0)
-
+'''
 # calculate quality score
-qualityscore = test_measure_BRISQUE(sys.argv[1])
-print "Score of the given image: ", qualityscore
+# feats = test_measure_BRISQUE(sys.argv[1])
+feats = test_measure_BRISQUE('./00151001.png')
+print(" feats of the given image: ", feats)
+# https://github.com/krshrimali/No-Reference-Image-Quality-Assessment-using-BRISQUE-Model/blob/master/Python/brisquequality.py
