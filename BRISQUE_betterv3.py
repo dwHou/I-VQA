@@ -1,4 +1,4 @@
-BRISQUE_version2、version3 都会在图片纯色没有纹理时出现零或nan值。
+BRISQUE_version2、version3、version4 都会在图片纯色没有纹理时出现零或nan值。
 
 # coding=utf-8
 import os
