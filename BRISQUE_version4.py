@@ -156,7 +156,7 @@ def test_measure_BRISQUE(imgPath):
         max = max_[i] 
         x.append(-1 + (2.0/(max - min) * (features[i] - min)))
     
-    return feature		
+    return features		
     # return x
 '''
 # exit if input argument not given
