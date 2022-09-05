@@ -1,0 +1,26 @@
+{
+    "input_process": {
+      "read_mode": "resize_random_crop",
+      "sub_img_dim": [
+        1280,
+        720
+      ],
+      "resize_dim": [
+        1920,
+        1080
+      ]
+    },
+    "model": {
+      "is_fr": false
+    },
+    "output_process": {
+      "use_sigmoid": false,
+      "scale": 1
+    },
+
+    "model_name": "CenseoIVQAModel",  
+    "fr": false, 
+    "backbone": {"model_name": "resnet18"},
+    "head": {"model_name":"SimpleHead"},
+    "use_sigmoid": true 
+  }

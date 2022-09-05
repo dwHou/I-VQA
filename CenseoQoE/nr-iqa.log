@@ -1,0 +1,14 @@
+False
+resnet18
+load pretrained model>>>>>
+load pretrained from url: https://download.pytorch.org/models/resnet18-5c106cde.pth
+0 125.png
+numpy mos: [[0.58545357]] (1, 1)
+[0.5854535698890686]
+1 1352.png
+numpy mos: [[0.6289068]] (1, 1)
+[0.628906786441803]
+2 505.png
+numpy mos: [[0.6488973]] (1, 1)
+[0.6488972902297974]
+saving result at :results/-08-31-11-16-28.json

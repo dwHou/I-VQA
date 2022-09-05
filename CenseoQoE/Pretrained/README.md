@@ -1,0 +1,1 @@
+[Pretrained model](https://github.com/Tencent/CenseoQoE/tree/master/CenseoQoE-Algorithm)

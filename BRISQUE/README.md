@@ -1,0 +1,1 @@
+BRISQUE version 3 is more reliable than version 1 and 2.  
